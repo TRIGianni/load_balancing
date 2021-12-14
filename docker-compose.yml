@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  loadbalacing:
+    hostname: loadbalacing
+    build:
+      context : ./nginx/
+      dockerfile: Nginx.Dockerfile
+
+    ports:
+      - "5400:5400"
+    restart: always  
+
+  web:
+    image: nginx
+    hostname: web
+    volumes:
+      - ./src:/usr/share/nginx/html/
+      
